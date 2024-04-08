@@ -27,7 +27,7 @@ class App extends Component {
 
   getData = async() => {
     console.log("I am Called")
-    const response = await fetch("http://localhost:3001/users")
+    const response = await fetch("https://sample-mongo.vercel.app/users")
     const data = await response.json()
     console.log(data);
   }
@@ -44,7 +44,7 @@ class App extends Component {
       body:JSON.stringify(datas)
     }
     try {
-      const response = await fetch("http://localhost:3001/users", options);
+      const response = await fetch("https://sample-mongo.vercel.app/users", options);
       if (!response.ok) {
           throw new Error('Network response was not ok.');
       }
@@ -67,7 +67,7 @@ class App extends Component {
       },
       body:JSON.stringify(datas)
     }
-    const response = await fetch("http://localhost:3001/users",options)
+    const response = await fetch("https://sample-mongo.vercel.app/users",options)
     const data = await response.json()
     console.log(data)
   }
@@ -83,7 +83,7 @@ class App extends Component {
       },
       body:JSON.stringify(datas)
     }
-    const response = await fetch("http://localhost:3001/users",options)
+    const response = await fetch("https://sample-mongo.vercel.app/users",options)
     const data = await response.json()
     console.log(data)
   }
