@@ -31,7 +31,8 @@ app.get("/", (req, res) => {
 app.get("/users", async (req, res) => {
   try {
     await connectToDatabase();
-    const getData = await accountsCollection.findOne({ name: "Parker" });
+    const getData = await accountsCollection.find({}).toArray();
+    console.log(getData)
     res.send(getData);
   } catch (err) {
     console.log(`Error Occurred : ${err}`);
