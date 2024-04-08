@@ -2,7 +2,7 @@ import './App.css';
 import {Component} from 'react'
 
 class App extends Component {
-  state = {data:'',username:'',password:'',newpassword:'',username2:'',username3:''}
+  state = {dataList:[],username:'',password:'',newpassword:'',username2:'',username3:''}
 
   onChangeUsername2 = (event) => {
     this.setState({username2:event.target.value})
@@ -29,6 +29,7 @@ class App extends Component {
     console.log("I am Called")
     const response = await fetch("https://sample-mongo.vercel.app/users")
     const data = await response.json()
+    this.setState({dataList:data})
     console.log(data);
   }
 
@@ -93,11 +94,23 @@ class App extends Component {
 
 
   render(){
-    const {username,password,newpassword,username2,username3} = this.state
+    const {dataList,username,password,newpassword,username2,username3} = this.state
     return (
       <>
       <h1>Hello World</h1>
       <button type="button" onClick={this.getData}>Get Data</button>
+      <table>
+        <tr>
+          <th>Username</th>
+          <th>Password</th>
+        </tr>
+        {dataList.map((ele) =>  (
+          <tr key={ele._id}>
+            <td>{ele.username}</td>
+            <td>{ele.password}</td>
+          </tr>
+        ))}
+      </table>
       <h1>Post Data</h1>
       <form onSubmit={this.onPostData}>
         <label htmlFor="username">Username</label>
