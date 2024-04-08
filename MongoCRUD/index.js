@@ -1,15 +1,15 @@
 const express = require("express")
 const {MongoClient,ObjectId} = require("mongodb")
 const dotenv = require("dotenv")
-const cors = require("cors")
+// const cors = require("cors")
 
 const app = express();
 app.use(express.json())
-app.use(cors(
-    {
-        origin : 'https://sample-mongo-gi3o.vercel.app/'
-    }
-))
+// app.use(cors(
+//     {
+//         origin : 'https://sample-mongo-gi3o.vercel.app/'
+//     }
+// ))
 dotenv.config()
 
 // Connection String
