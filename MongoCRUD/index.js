@@ -6,7 +6,9 @@ const cors = require("cors")
 const app = express();
 app.use(express.json())
 app.use(cors(
-    {'Access-Control-Allow-Origin' : 'https://sample-mongo-gi3o.vercel.app'}
+    {
+        origin : 'https://sample-mongo-gi3o.vercel.app/'
+    }
 ))
 dotenv.config()
 
