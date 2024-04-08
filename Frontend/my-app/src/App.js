@@ -70,6 +70,7 @@ class App extends Component {
     const response = await fetch("https://sample-mongo.vercel.app/users",options)
     const data = await response.json()
     console.log(data)
+    this.setState({username3:'',newpassword:''})
   }
 
   onDeleteUser = async (event) => {
@@ -86,20 +87,21 @@ class App extends Component {
     const response = await fetch("https://sample-mongo.vercel.app/users",options)
     const data = await response.json()
     console.log(data)
+    this.setState({username3:''})
   }
 
 
 
   render(){
-    const {username,password,newpassword} = this.state
+    const {username,password,newpassword,username2,username3} = this.state
     return (
       <>
       <h1>Hello World</h1>
       <button type="button" onClick={this.getData}>Get Data</button>
       <h1>Post Data</h1>
       <form onSubmit={this.onPostData}>
-        {/* <label htmlFor="username">Username</label>
-        <input value={username} onChange={this.onChangeUsername} type="text" id="username" placeholder="Enter the Username" /> */}
+        <label htmlFor="username">Username</label>
+        <input value={username} onChange={this.onChangeUsername} type="text" id="username" placeholder="Enter the Username" />
         <label htmlFor="password">Password</label>
         <input value={password} onChange={this.onChangePassword} type="password" id="password" placeholder="Enter the Password" />
         <button type="submit">Post Data</button>
@@ -107,15 +109,15 @@ class App extends Component {
       <h1>Update Data</h1>
       <form onSubmit={this.onUpdateData}>
         <label htmlFor="username2">Username</label>
-        <input value={username} onChange={this.onChangeUsername2} type="text" id="username2" placeholder="Enter the Username" />
+        <input value={username2} onChange={this.onChangeUsername2} type="text" id="username2" placeholder="Enter the Username" />
         <label htmlFor="newpassword">Password</label>
         <input value={newpassword} onChange={this.onChangeNewPassword} type="password" id="newpassword" placeholder="Enter the Password" />
         <button type="submit">Update Data</button>
       </form>
       <h1>Delete User</h1>
       <form onSubmit={this.onDeleteUser}>
-        <label htmlFor="username">Username</label>
-        <input id="username3" type="text" placeholder="Enter the username : " onChange={this.onChangeUsername3}/>
+        <label htmlFor="username3">Username</label>
+        <input value={username3} id="username3" type="text" placeholder="Enter the username : " onChange={this.onChangeUsername3}/>
         <button type="submit">Delete User</button>
       </form>
       </>
