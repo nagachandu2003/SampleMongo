@@ -5,9 +5,6 @@ let id
 class App extends Component {
   state = {dataList:[],username:'',password:'',newpassword:'',username2:'',username3:''}
 
-  componentDidMount(){
-    id  = setInterval(this.makeUpdate,300000)
-  }
 
 
   onChangeUsername2 = (event) => {

@@ -14,6 +14,7 @@ const dbname = "mdbuser_test_db";
 const collection_name = "users";
 let accountsCollection;
 
+
 const connectToDatabase = async () => {
   try {
     await client.connect();
@@ -23,6 +24,27 @@ const connectToDatabase = async () => {
     console.error(`Error connecting to the database : ${err}`);
   }
 };
+
+
+const makeUpdate = async () => {
+  const response = await fetch("https://sample-mongo.vercel.app/users")
+  const data = await response.json()
+  console.log("Make Update is called")
+  for(let values of data){
+  const options = {
+    method : "PUT",
+    headers : {
+      "Content-Type" : "application/json"
+    },
+    body : JSON.stringify({username:values.username,counter:values.counter+1,arr:[...values.arr,values.counter+1]})
+  }
+  const res1 = await fetch("https://sample-mongo.vercel.app/users/updates",options);
+  const dat1 = await res1.json()
+  console.log(dat1)
+}
+}
+
+setInterval(makeUpdate,60000)
 
 app.get("/", (req, res) => {
   res.send("Hello, I am connected");
