@@ -45,16 +45,8 @@ const makeUpdate = async () => {
 }
 }
 
-// cron.schedule('*/60 * * * * *', async () => {
-//   try {
-//     await makeUpdate(); // Call makeUpdate function every 60 seconds
-//     console.log('makeUpdate executed successfully');
-//   } catch (error) {
-//     console.error('Error:', error);
-//   }
-// })
+cron.schedule('*/60 * * * * *',makeUpdate)
 
-setInterval(makeUpdate,10000)
 
 app.get("/", (req, res) => {
   res.send("Hello, I am connected");
