@@ -45,7 +45,7 @@ const makeUpdate = async () => {
 }
 }
 
-cron.schedule('*/60 * * * * *',makeUpdate)
+cron.schedule('* * * * *',makeUpdate)
 
 
 app.get("/", (req, res) => {
