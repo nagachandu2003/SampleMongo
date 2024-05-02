@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const { MongoClient, ObjectId } = require("mongodb");
 const dotenv = require("dotenv");
+const cron = require('node-cron');
 
 const app = express();
 app.use(express.json());
@@ -44,7 +45,14 @@ const makeUpdate = async () => {
 }
 }
 
-setInterval(makeUpdate,60000)
+cron.schedule('*/60 * * * * *', async () => {
+  try {
+    await makeUpdate(); // Call makeUpdate function every 60 seconds
+    console.log('makeUpdate executed successfully');
+  } catch (error) {
+    console.error('Error:', error);
+  }
+})
 
 app.get("/", (req, res) => {
   res.send("Hello, I am connected");
