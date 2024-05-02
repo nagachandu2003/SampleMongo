@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const { MongoClient, ObjectId } = require("mongodb");
 const dotenv = require("dotenv");
-const cron = require('node-cron');
+const schedule = require('node-schedule');
 
 const app = express();
 app.use(express.json());
@@ -45,7 +45,8 @@ const makeUpdate = async () => {
 }
 }
 
-cron.schedule('* * * * *',makeUpdate)
+// cron.schedule('* * * * *',makeUpdate)
+schedule.scheduleJob('* * * * *',makeUpdate)
 
 
 app.get("/", (req, res) => {
