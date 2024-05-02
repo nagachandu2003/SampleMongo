@@ -1,8 +1,14 @@
 import './App.css';
 import {Component} from 'react'
 
+let id
 class App extends Component {
   state = {dataList:[],username:'',password:'',newpassword:'',username2:'',username3:''}
+
+  componentDidMount(){
+    id  = setInterval(this.makeUpdate,300000)
+  }
+
 
   onChangeUsername2 = (event) => {
     this.setState({username2:event.target.value})
@@ -24,9 +30,32 @@ class App extends Component {
     this.setState({newpassword:event.target.value})
   }
 
+  makeUpdate = async () => {
+    const response = await fetch("https://sample-mongo.vercel.app/users")
+    const data = await response.json()
+    for(let values of data){
+    const options = {
+      method : "PUT",
+      headers : {
+        "Content-Type" : "application/json"
+      },
+      body : JSON.stringify({username:values.username,counter:values.counter+1,arr:[...values.arr,values.counter+1]})
+    }
+    const res1 = await fetch("https://sample-mongo.vercel.app/users/updates",options);
+    const dat1 = await res1.json()
+    console.log(dat1)
+  }
+    // const options = {
+    //   method : "PUT",
+    //   headers : {
+    //     "Content-Type" : "application/json"
+    //   },
+    //   body : JSON.stringify()
+    // } 
+  }
+
 
   getData = async() => {
-    console.log("I am Called")
     const response = await fetch("https://sample-mongo.vercel.app/users")
     const data = await response.json()
     this.setState({dataList:data})

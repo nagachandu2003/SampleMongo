@@ -55,6 +55,24 @@ app.post("/users", async (req, res) => {
   }
 });
 
+app.put("/users/updates", async (req,res) => {
+  console.log(req.body)
+  try{
+    await connectToDatabase()
+    const result = await accountsCollection.updateOne({username:req.body.username},{
+      $set : {counter:req.body.counter,
+      arr: req.body.arr}
+    })
+    res.send({success:"Record Updated"})
+  }
+  catch(Err){
+    console.log(`Error Occurred : ${Err}`)
+  }
+  finally {
+    await client.close()
+  }
+})
+
 app.put("/users", async (req, res) => {
   const { username, newpassword } = req.body;
   try {
