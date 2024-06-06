@@ -70,7 +70,7 @@ class App extends Component {
   getWeatherDetails = async () => {
     console.log(process.env.REACT_APP_WEATHER_API_KEY)
     try{
-      const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=vizag&limit=1&appid=${process.env.REACT_APP_WEATHER_API_KEY}`)
+      const response = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=vizag&limit=1&appid=${process.env.REACT_APP_WEATHER_API_KEY}`)
       const data = await response.json()
       console.log(data);
     }
