@@ -67,6 +67,19 @@ class App extends Component {
     }
   }
 
+  getWeatherDetails = async () => {
+    console.log(process.env.REACT_APP_WEATHER_API_KEY)
+    try{
+      const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=vizag&limit=1&appid=${process.env.REACT_APP_WEATHER_API_KEY}`)
+      const data = await response.json()
+      console.log(data);
+    }
+    catch(Err)
+    {
+      console.log(`Error Occurred : ${Err}`);
+    }
+  }
+
 
   getData = async() => {
     const response = await fetch("https://sample-mongo.vercel.app/users")
@@ -175,6 +188,7 @@ class App extends Component {
     return (
       <>
       <button onClick={this.getNewsDetails}>Get News</button>
+      <button onClick={this.getWeatherDetails}>Get Weather</button>
       <h1>Hello World</h1>
       <button type="button" onClick={this.getData}>Get Data</button>
       <table>
